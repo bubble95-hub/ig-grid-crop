@@ -243,7 +243,7 @@
       if (!slot.src) {
         // Empty — no badge, green border, + icon
         cell.innerHTML = `
-          <span class="cell-close" onclick="removeSlot(${idx});event.stopPropagation()">✕</span>
+          ${n > 1 ? `<span class="cell-close" onclick="removeSlot(${idx});event.stopPropagation()">✕</span>` : ''}
           <div class="cell-empty" onclick="triggerUpload(${idx})">
             <span class="plus">+</span>
             <span class="plus-label">新貼文</span>
@@ -252,7 +252,7 @@
         // Filled — badge, no border by default, overlay on click
         cell.innerHTML = `
           <span class="new-badge">new</span>
-          <span class="cell-close" onclick="removeSlot(${idx});event.stopPropagation()">✕</span>
+          ${n > 1 ? `<span class="cell-close" onclick="removeSlot(${idx});event.stopPropagation()">✕</span>` : ''}
           <img class="cell-img" src="${slot.src}" alt="">
           <div class="cell-overlay">
             <button class="ov-btn safe" onclick="triggerUpload(${idx});event.stopPropagation()">重新上傳</button>
