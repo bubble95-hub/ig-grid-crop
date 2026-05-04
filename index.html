@@ -209,7 +209,7 @@
       const tile=document.createElement('canvas');
       tile.width=Math.round(cw); tile.height=Math.round(ch);
       tile.getContext('2d').drawImage(origImg,ox1+c*cw,oy1+r*ch,cw,ch,0,0,tile.width,tile.height);
-      storedSlices.push(tile.toDataURL('image/jpeg',0.92));
+      storedSlices.push(tile.toDataURL('image/jpeg',1.0));
     }
     newSlots = [{ src: null }];
     renderGrid();
