@@ -116,6 +116,7 @@
   </div>
   <div class="grid" id="theGrid"></div>
   <input type="file" accept="image/*" id="newImgInput" style="display:none">
+  <div id="dragHint" style="display:none;font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);text-align:center;margin-top:14px">長按可移動新貼文順序</div>
   <button class="btn btn-ghost" id="addBtn" style="margin-top:14px" onclick="addNewSlot()">＋ 再新增一格</button>
   <button class="btn btn-ghost" style="margin-top:8px" onclick="resetPreview()">重置 Preview</button>
 </div>
@@ -292,6 +293,7 @@
       addBtn.disabled = false;
       addBtn.textContent = `＋ 再新增一格 (${remaining_slots})`;
     }
+    document.getElementById('dragHint').style.display = n >= 2 ? 'block' : 'none';
   }
 
   // ── Overlay toggle ───────────────────────────────────────────────────────────
