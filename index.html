@@ -42,7 +42,7 @@
   .profile-dot { width: 30px; height: 30px; border-radius: 50%; background: var(--border); flex-shrink: 0; }
   .profile-name { font-size: 13px; font-weight: 500; }
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
-  .grid-cell { aspect-ratio: 4/5; overflow: hidden; position: relative; background: #e8e4df; }
+  .grid-cell { aspect-ratio: 4/5; overflow: hidden; position: relative; background: transparent; }
   .grid-cell img.cell-img { width: 100%; height: 100%; object-fit: cover; display: block; -webkit-touch-callout: none; user-select: none; -webkit-user-select: none; }
 
   /* green border: only when .show-border */
@@ -57,8 +57,8 @@
   .cell-empty .plus-label { font-family: 'DM Mono', monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
 
   /* overlay */
-  .cell-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.52); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; z-index: 3; opacity: 0; pointer-events: none; transition: opacity 0.15s; }
-  .grid-cell.show-overlay .cell-overlay { opacity: 1; pointer-events: all; }
+  .cell-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.52); display: none; flex-direction: column; align-items: center; justify-content: center; gap: 8px; z-index: 3; pointer-events: none; transition: opacity 0.15s; }
+  .grid-cell.show-overlay .cell-overlay { display: flex; pointer-events: all; }
   .ov-btn { background: rgba(255,255,255,0.95); border: none; border-radius: 5px; font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; padding: 6px 12px; width: 80%; text-align: center; transition: background 0.15s; }
   .ov-btn:hover { background: #fff; }
   .ov-btn.danger { color: var(--danger); }
@@ -80,7 +80,7 @@
   .cell-close::before { content: ''; position: absolute; inset: -8px; }
   .cell-close:hover { text-shadow: 0 1px 5px rgba(0,0,0,0.45); }
   .grid-cell.is-new.draggable { cursor: grab; }
-  .grid-cell.is-new.dragging { opacity: 0.4; cursor: grabbing; }
+  .grid-cell.is-new.dragging { outline: 2px dashed var(--accent); outline-offset: -2px; cursor: grabbing; }
   .grid-cell.is-new.drag-over { outline: 2px dashed var(--accent); outline-offset: -2px; }
 </style>
 </head>
