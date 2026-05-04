@@ -64,6 +64,21 @@
   .ov-btn.danger { color: var(--danger); }
   .ov-btn.safe { color: var(--accent); }
   .cell-ph { width: 100%; height: 100%; background: linear-gradient(135deg, #ede9e4, #e0ddd8); }
+
+  /* Close icon on new cells */
+  .cell-close {
+    position: absolute; top: 5px; right: 5px;
+    width: 24px; height: 24px;
+    display: flex; align-items: center; justify-content: center;
+    background: none;
+    color: #fff; font-size: 13px; line-height: 1;
+    cursor: pointer; z-index: 5;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.25);
+    transition: text-shadow 0.15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .cell-close::before { content: ''; position: absolute; inset: -8px; }
+  .cell-close:hover { text-shadow: 0 1px 5px rgba(0,0,0,0.45); }
   .grid-cell.is-new.draggable { cursor: grab; }
   .grid-cell.is-new.dragging { opacity: 0.4; cursor: grabbing; }
   .grid-cell.is-new.drag-over { outline: 2px dashed var(--accent); outline-offset: -2px; }
@@ -227,6 +242,7 @@
       if (!slot.src) {
         // Empty — no badge, green border, + icon
         cell.innerHTML = `
+          <span class="cell-close" onclick="removeSlot(${idx});event.stopPropagation()">✕</span>
           <div class="cell-empty" onclick="triggerUpload(${idx})">
             <span class="plus">+</span>
             <span class="plus-label">新貼文</span>
@@ -235,11 +251,10 @@
         // Filled — badge, no border by default, overlay on click
         cell.innerHTML = `
           <span class="new-badge">new</span>
+          <span class="cell-close" onclick="removeSlot(${idx});event.stopPropagation()">✕</span>
           <img class="cell-img" src="${slot.src}" alt="">
           <div class="cell-overlay">
             <button class="ov-btn safe" onclick="triggerUpload(${idx});event.stopPropagation()">重新上傳</button>
-            <button class="ov-btn danger" onclick="removeSlot(${idx});event.stopPropagation()">刪除格子</button>
-            <button class="ov-btn danger" onclick="clearSlot(${idx});event.stopPropagation()">刪除照片</button>
           </div>`;
         cell.addEventListener('click', () => toggleOverlay(cell));
         // drag only when 2+ filled slots
